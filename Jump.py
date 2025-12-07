@@ -118,14 +118,14 @@ def restart():
 def random_platforms():
     global platforms, start_time
     platforms = []
-    previous_location = random.randint(0, WINDOW_WIDTH-53)
+    prev_x = random.randint(0, WINDOW_WIDTH-53)
     for i in range(1, 8):
-        platforms.append([previous_location, i*81, 50+i*3, 15])
-        previous_location += random.randint(-150, 150)
-        if previous_location < 0:
-            previous_location = 0
-        if previous_location > WINDOW_WIDTH-(50+i*3):
-            previous_location = WINDOW_WIDTH-(50+i*3)
+        w = 50+i*3
+        h = 15
+        y = i*81
+        platforms.append([prev_x, y, w, h])
+        prev_x += random.randint(-150, 150)
+        prev_x = max(0, min(prev_x, WINDOW_WIDTH-w))
     
     start_time = time.time()
 
